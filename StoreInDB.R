@@ -163,18 +163,23 @@
   # 2016-01-02 - 2016-02-02
   
   cal.to.save.filtered <- cal.to.save %>% 
-    filter(date > as.Date('2018-06-11') & date < as.Date('2018-07-08')) %>% 
-    filter(date > as.Date('2016-02-29') & date < as.Date('2016-04-04')) %>% 
-    filter(date > as.Date('2016-01-04') & date < as.Date('2016-02-01'))
+    filter(date <= as.Date('2018-06-11') | date >= as.Date('2018-07-08'))
   
+  cal.to.save.filtered <- cal.to.save.filtered %>% 
+    filter(date <= as.Date('2016-02-29') | date >= as.Date('2016-04-04'))
   
+  cal.to.save.filtered <- cal.to.save.filtered %>% 
+    filter(date <= as.Date('2016-01-04') | date >= as.Date('2016-02-01'))
+
 
   cal.to.save.filtered$date<-NULL
 
   #remove duplicate rows
   cal.to.save.u<-unique(cal.to.save.filtered)
   
+  dim(cal.to.save.u)
   
+  table(cal.to.save.u$period)
 
   sqlSave(air_conn, cal.to.save.u, tablename = 'calendar')
 
@@ -274,6 +279,7 @@
   
   table(lis.to.save.u$calendar_updated_trim)
   
+  table(lis.to.save.u$period)
   
   # remove duplicate rows
   
