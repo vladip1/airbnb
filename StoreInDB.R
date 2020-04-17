@@ -85,10 +85,6 @@
 
   df<-as.data.frame(calendars[1])
     
-  #cc<-str_locate(i, "20")
-  #61
-  #cc<-str_locate(i, "data/calendar")
-  #72
   
   cal<-data.frame()
   cal$date<-NULL
@@ -112,7 +108,6 @@
     
     ###################################################
     
-    #wget(i)
     
     file.rename('calendar.csv.gz', file_before)
   } 
