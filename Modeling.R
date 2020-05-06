@@ -23,6 +23,7 @@ library(e1071)
 library(adabag)
 library(gbm)
 library(class)
+library(MLmetrics)
 
 
 dim(train)

@@ -1,5 +1,3 @@
-library(MLmetrics)
-
 dataset1Variables<-c("week_num_1","week_num_10","week_num_11","week_num_12","week_num_13","week_num_14","week_num_15","week_num_16","week_num_17","week_num_18","week_num_19",
                      "week_num_2","week_num_20","week_num_21","week_num_22","week_num_23","week_num_24","week_num_25","week_num_26","week_num_27","week_num_28","week_num_29",
                      "week_num_3","week_num_30","week_num_31","week_num_32","week_num_33","week_num_34","week_num_35","week_num_36","week_num_37","week_num_38","week_num_39",
