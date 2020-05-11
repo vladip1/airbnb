@@ -7,13 +7,13 @@ if(.Platform$OS.type == "unix") {
 source('LoadDataframes.R')
 
 library(randomForest)
-library(doParallel)
+#library(doParallel)
 library(mlbench)
 library(caret)
 
 
-cls = makeCluster(8) 
-registerDoParallel(cls)
+#cls = makeCluster(8) 
+#registerDoParallel(cls)
 
 
 
@@ -24,6 +24,8 @@ mod
 
 ############ predict on Dev ###############
 pred_dev <- predict(mod,newdata=test[2:ncol(test)], type = "prob")
+
+err_res <- NULL
 
 err_res <- rbind(err_res, data.frame(Name="RandomForest", Target="dev", 
                                      Accuracy=accuracyFunc(as.data.frame(pred_dev), test$occupied_cat)))
