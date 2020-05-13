@@ -10,9 +10,14 @@ library(stringr)
 ######################
 #Set variables according to the dataset (as described in protocol excel(Transformations))
 #####################
+
+#remove text valiables
 remove<-c('X','listing_id','summary','space','description','neighborhood_overview','notes','transit','host_about','amenities')
+
 dummy_common <-c('week_num','host_is_superhost','host_identity_verified','neighbourhood_cleansed','zipcode','is_location_exact','property_type','room_type','bed_type','review_scores_accuracy','review_scores_cleanliness','review_scores_checkin','review_scores_communication','review_scores_location','review_scores_value','instant_bookable','require_guest_profile_picture','require_guest_phone_verification','reviews_per_month')
+
 dummy_dataset1 <-c('bathrooms','bedrooms','beds','security_deposit','cleaning_fee','guests_included','extra_people','minimum_nights','maximum_nights','number_of_reviews','cancellation_policy','calculated_host_listings_count','accommodates.norm')
+
 most.popular.amenities<-c("Freestreetparking","Familykidfriendly","CableTV","Internet","Firstaidkit","Laptopfriendlyworkspace","Fireextinguisher","Iron","Hairdryer","Dryer","Washer","Wifi","Carbonmonoxidedetector","Hangers","TV","Shampoo","Kitchen","Smokedetector","Essentials","Heating")
 
 convert_common_categoricals_to_dummies<-function(data){

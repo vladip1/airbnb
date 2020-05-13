@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+      <html>
+      <head>
+      <title>Data Visualization</title>
+      <meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
+      <link rel='stylesheet' href='http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css'>
+
+      <script src='http://code.jquery.com/jquery-1.10.2.js'></script>
+      <script>
+      $(document).ready(function(){
+      $('.onetoone').hide();
+      });
+
+      $(function() {
+      $('.origimg').click(function(e) {
+      $('#popup_img').attr('src',$(this).attr('src'));
+      $('#myContainer').hide();
+      var pos = $(document).scrollTop();
+      $('#myContainer').css({'top':pos+20,'left':250, 'position':'absolute', 'border':'1px solid black', 'padding':'0px'});
+      $('#myContainer').show();
+      });
+      $('#myContainer').click(function(e) {
+      $('#myContainer').hide();
+      });
+
+      $('#myform2').submit(function(e) {
+      e.preventDefault();
+      });
+
+      $('#onetoone').on('click',function() {
+      console.log('onetone button - 1');
+      $('#onetoone').hide();
+      $('#aslist').show();
+      // To show only individual rows:
+      $('.Row').hide();
+      $('.onetoone').show();
+      // then we iterate
+      var i = $('.Row').length;
+      // Then we iterate
+      var nxt = $('#idx').val();
+      if (nxt < i & nxt >0) {
+      $('.Row').hide();
+      $('.Row').eq(0).show();
+      $('.Row').eq(nxt).show();
+      } else {
+      $('#idx').val(1)
+      }
+      console.log('onetone button - 2');
+      });
+
+      $('#aslist').on('click',function() {
+      console.log('aslist button - 1');
+      $('#onetoone').show();
+      $('#aslist').hide();
+      $('.onetoone').hide();
+      $('.Row').show();
+      console.log('aslist button - 2');
+      });
+
+      $('#less').on('click',function(){
+      console.log('less button - 1');
+      var i = $('.Row').length;
+      var nxt = parseInt($('#idx').val(),10) - 1;
+      if (nxt < i & nxt >0) {
+      $('#idx').val(nxt)
+      $('.Row').hide();
+      $('.Row').eq(0).show();
+      $('.Row').eq(nxt).show();
+      } else {
+      $('#idx').val(1)
+      }
+      console.log('less button - 2');
+      });
+
+      $('#more').on('click',function(){
+      console.log('more button - 1');
+      var i = $('.Row').length;
+      var nxt = parseInt($('#idx').val(),10) + 1;
+      if (nxt < i & nxt >0) {
+      $('#idx').val(nxt)
+      $('.Row').hide();
+      $('.Row').eq(0).show();
+      $('.Row').eq(nxt).show();
+      } else {
+      $('#idx').val(i)
+      }
+      console.log('more button - 2');
+      });
+
+      $('#idx').on('change', function(){
+      console.log('idx changed - 1');
+      var i = $('.Row').length;
+      var nxt = $('#idx').val();
+      if (nxt < i & nxt >0) {
+      $('#idx').val(nxt)
+      $('.Row').hide();
+      $('.Row').eq(0).show();
+      $('.Row').eq(nxt).show();
+      } else {
+      $('#idx').val(i)
+      }
+      console.log('idx changed - 2');
+      });
+      });
+
+      </script>
+
+      <style type='text/css'>
+      .Table
+      {
+      display: table;
+      }
+      .Title
+      {
+      display: table-caption;
+      text-align: center;
+      font-weight: bold;
+      font-size: larger;
+      background-color:#4C6F50;
+      color: #fff;
+      }
+      .Row
+      {
+      display: table-row;
+      }
+      .Row:nth-child(even) {
+        background-color: #56882433;
+      }
+      .Cell
+      {
+      display: table-cell;
+      border: solid;
+      border-width: thin;
+      padding-left: 5px;
+      padding-right: 5px;
+      vertical-align: top;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 14px;
+      }
+      </style>
+
+      </head>
+
+      <body>
+      <div id='pageone' data-role='main' class='ui-content'>
+      
+<p><p><h1> Data Visualization & Exploration </h1>
+                <form>
+                <input type='button' id='onetoone' value='Show as Cards'>
+                <input type='button' id='aslist' class='onetoone' value='Show as List'>
+                </form>
+                <p>
+                
+<p><p>
+                <div class='Table'>
+                <div class='Row'>
+                <div class='Cell Title'> Variable </div>
+                <div class='Cell Title'> Distribution </div>
+                <div class='Cell Title'> Descriptive <br> Statistics</div>
+                <div class='Cell Title'> Outliers </div> <div class='Cell Title'> Dependent <br> Variable <br> Distribution </div> </div>
+<div class='Row'><div class='Cell'><b> X </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/X_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  176451 / 176451  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %)<p> <u>Mean</u>:  1.418e+05 	 <u>StdDev</u>:  8.193e+04 <br><u>Median</u>:  141810 	 <u>IQR</u>:  7.082e+04 - 2.127e+05 <br><u>Min</u>:  1 	 <u>Max</u>:  283544 </div>
+<div class='Cell'><img class='origimg' src='fig/X_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> No outlier values found</div>
+<div class='Cell'><img class='origimg' src='fig/X_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> listing_id </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/listing_id_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  176451 / 176451  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %)<p> <u>Mean</u>:  1.678e+07 	 <u>StdDev</u>:  1.143e+07 <br><u>Median</u>:  15828423 	 <u>IQR</u>:  6.61e+06 - 2.706e+07 <br><u>Min</u>:  958 	 <u>Max</u>:  40569280 </div>
+<div class='Cell'><img class='origimg' src='fig/listing_id_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> No outlier values found</div>
+<div class='Cell'><img class='origimg' src='fig/listing_id_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> week_num </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/week_num_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  176451 / 176451  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %)<p> <u>Mean</u>:  28.09 	 <u>StdDev</u>:  15.78 <br><u>Median</u>:  28 	 <u>IQR</u>:  14 - 43 <br><u>Min</u>:  1 	 <u>Max</u>:  53 </div>
+<div class='Cell'><img class='origimg' src='fig/week_num_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> No outlier values found</div>
+<div class='Cell'><img class='origimg' src='fig/week_num_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> avg_price </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/avg_price_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  176451 / 176451  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %)<p> <u>Mean</u>:  5.079 	 <u>StdDev</u>:  0.7055 <br><u>Median</u>:  5.031 	 <u>IQR</u>:  4.605 - 5.517 <br><u>Min</u>:  2.303 	 <u>Max</u>:  7.601 </div>
+<div class='Cell'><img class='origimg' src='fig/avg_price_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> There are  788  outlier values</div>
+<div class='Cell'><img class='origimg' src='fig/avg_price_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> min_price </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/min_price_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  176451 / 176451  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %)<p> <u>Mean</u>:  5.028 	 <u>StdDev</u>:  0.7024 <br><u>Median</u>:  5.004 	 <u>IQR</u>:  4.575 - 5.438 <br><u>Min</u>:  2.303 	 <u>Max</u>:  7.601 </div>
+<div class='Cell'><img class='origimg' src='fig/min_price_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> There are  362  outlier values</div>
+<div class='Cell'><img class='origimg' src='fig/min_price_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> max_price </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/max_price_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  176451 / 176451  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %)<p> <u>Mean</u>:  5.132 	 <u>StdDev</u>:  0.7223 <br><u>Median</u>:  5.075 	 <u>IQR</u>:  4.654 - 5.557 <br><u>Min</u>:  2.303 	 <u>Max</u>:  9.21 </div>
+<div class='Cell'><img class='origimg' src='fig/max_price_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> There are  495  outlier values</div>
+<div class='Cell'><img class='origimg' src='fig/max_price_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> host_is_superhost </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/host_is_superhost_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  176451 / 176451  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  2 <br> <ul> <li><u> f </u>:  110863 </li> <li><u> t </u>:  65588 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/host_is_superhost_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> host_identity_verified </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/host_identity_verified_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  176451 / 176451  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  2 <br> <ul> <li><u> f </u>:  80786 </li> <li><u> t </u>:  95665 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/host_identity_verified_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> latitude </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/latitude_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  176451 / 176451  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %)<p> <u>Mean</u>:  37.77 	 <u>StdDev</u>:  0.02277 <br><u>Median</u>:  37.77 	 <u>IQR</u>:  37.75 - 37.79 <br><u>Min</u>:  37.7 	 <u>Max</u>:  37.83 </div>
+<div class='Cell'><img class='origimg' src='fig/latitude_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> No outlier values found</div>
+<div class='Cell'><img class='origimg' src='fig/latitude_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> longitude </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/longitude_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  176451 / 176451  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %)<p> <u>Mean</u>:  -122.4 	 <u>StdDev</u>:  0.02708 <br><u>Median</u>:  -122.4 	 <u>IQR</u>:  -122.4 - -122.4 <br><u>Min</u>:  -122.5 	 <u>Max</u>:  -122.4 </div>
+<div class='Cell'><img class='origimg' src='fig/longitude_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> There are  988  outlier values</div>
+<div class='Cell'><img class='origimg' src='fig/longitude_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> is_location_exact </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/is_location_exact_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  176451 / 176451  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  2 <br> <ul> <li><u> f </u>:  27381 </li> <li><u> t </u>:  149070 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/is_location_exact_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> room_type </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/room_type_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  176451 / 176451  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  4 <br> <ul> <li><u> Entire home/apt </u>:  95660 </li> <li><u> Hotel room </u>:  1534 </li> <li><u> Private room </u>:  71138 </li> <li><u> Shared room </u>:  8119 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/room_type_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> accommodates </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/accommodates_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  176451 / 176451  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %)<p> <u>Mean</u>:  3.147 	 <u>StdDev</u>:  1.995 <br><u>Median</u>:  2 	 <u>IQR</u>:  2 - 4 <br><u>Min</u>:  1 	 <u>Max</u>:  16 </div>
+<div class='Cell'><img class='origimg' src='fig/accommodates_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> 8, 10, 11, 9, 16, 12, 15, 14, 13</div>
+<div class='Cell'><img class='origimg' src='fig/accommodates_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> bathrooms </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/bathrooms_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  176451 / 176451  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  3 <br> <ul> <li><u> None </u>:  2445 </li> <li><u> One </u>:  136897 </li> <li><u> Several </u>:  37109 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/bathrooms_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> bedrooms </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/bedrooms_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  176451 / 176451  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  3 <br> <ul> <li><u> None </u>:  17076 </li> <li><u> One </u>:  114802 </li> <li><u> Several </u>:  44573 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/bedrooms_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> beds </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/beds_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  176451 / 176451  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  3 <br> <ul> <li><u> One </u>:  101041 </li> <li><u> Two </u>:  44213 </li> <li><u> Several </u>:  31197 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/beds_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> bed_type </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/bed_type_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  176451 / 176451  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  5 <br> <ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/bed_type_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> security_deposit </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/security_deposit_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  176451 / 176451  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  4 <br> <ul> <li><u> None </u>:  83198 </li> <li><u> S </u>:  48343 </li> <li><u> M </u>:  29997 </li> <li><u> L </u>:  14913 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/security_deposit_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> cleaning_fee </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/cleaning_fee_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  176451 / 176451  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  5 <br> <ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/cleaning_fee_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> guests_included </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/guests_included_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  176451 / 176451  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  4 <br> <ul> <li><u> upTwo </u>:  109506 </li> <li><u> upThree </u>:  42973 </li> <li><u> upSeven </u>:  22234 </li> <li><u> More </u>:  1738 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/guests_included_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> extra_people </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/extra_people_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  176451 / 176451  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  4 <br> <ul> <li><u> None </u>:  87011 </li> <li><u> Fifty </u>:  67653 </li> <li><u> Hundred </u>:  17008 </li> <li><u> More </u>:  4779 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/extra_people_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> minimum_nights </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/minimum_nights_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  176451 / 176451  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  4 <br> <ul> <li><u> Day </u>:  47915 </li> <li><u> Week </u>:  74626 </li> <li><u> Month </u>:  52612 </li> <li><u> Year </u>:  1298 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/minimum_nights_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> maximum_nights </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/maximum_nights_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  176451 / 176451  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  5 <br> <ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/maximum_nights_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> number_of_reviews </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/number_of_reviews_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  176451 / 176451  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  4 <br> <ul> <li><u> None </u>:  34590 </li> <li><u> S </u>:  94519 </li> <li><u> M </u>:  32484 </li> <li><u> L </u>:  14858 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/number_of_reviews_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> review_scores_accuracy </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/review_scores_accuracy_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  176451 / 176451  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  4 <br> <ul> <li><u> Bad </u>:  6387 </li> <li><u> Good </u>:  22927 </li> <li><u> Perfect </u>:  111740 </li> <li><u> Missing </u>:  35397 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/review_scores_accuracy_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> review_scores_cleanliness </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/review_scores_cleanliness_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  176451 / 176451  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  4 <br> <ul> <li><u> Bad </u>:  10650 </li> <li><u> Good </u>:  32249 </li> <li><u> Perfect </u>:  98148 </li> <li><u> Missing </u>:  35404 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/review_scores_cleanliness_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> review_scores_checkin </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/review_scores_checkin_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  176451 / 176451  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  4 <br> <ul> <li><u> Bad </u>:  3989 </li> <li><u> Good </u>:  14116 </li> <li><u> Perfect </u>:  122912 </li> <li><u> Missing </u>:  35434 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/review_scores_checkin_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> review_scores_communication </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/review_scores_communication_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  176451 / 176451  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  4 <br> <ul> <li><u> Bad </u>:  4445 </li> <li><u> Good </u>:  15419 </li> <li><u> Perfect </u>:  121191 </li> <li><u> Missing </u>:  35396 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/review_scores_communication_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> review_scores_location </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/review_scores_location_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  176451 / 176451  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  4 <br> <ul> <li><u> Bad </u>:  7738 </li> <li><u> Good </u>:  32300 </li> <li><u> Perfect </u>:  100981 </li> <li><u> Missing </u>:  35432 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/review_scores_location_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> review_scores_value </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/review_scores_value_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  176451 / 176451  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  4 <br> <ul> <li><u> Bad </u>:  12061 </li> <li><u> Good </u>:  60878 </li> <li><u> Perfect </u>:  68070 </li> <li><u> Missing </u>:  35442 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/review_scores_value_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> instant_bookable </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/instant_bookable_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  176451 / 176451  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  2 <br> <ul> <li><u> f </u>:  103425 </li> <li><u> t </u>:  73026 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/instant_bookable_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> cancellation_policy </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/cancellation_policy_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  176451 / 176451  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  6 <br> <ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/cancellation_policy_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> require_guest_profile_picture </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/require_guest_profile_picture_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  176451 / 176451  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  2 <br> <ul> <li><u> f </u>:  167773 </li> <li><u> t </u>:  8678 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/require_guest_profile_picture_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> require_guest_phone_verification </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/require_guest_phone_verification_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  176451 / 176451  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  2 <br> <ul> <li><u> f </u>:  165584 </li> <li><u> t </u>:  10867 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/require_guest_phone_verification_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> calculated_host_listings_count </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/calculated_host_listings_count_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  176451 / 176451  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  6 <br> <ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/calculated_host_listings_count_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> reviews_per_month </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/reviews_per_month_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  176451 / 176451  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  11 <br> <ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/reviews_per_month_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> host_seniority </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/host_seniority_1.png' height='150' width='150'><br></div>
+<div class='Cell' style='align: top;'> <u>Data type</u>: Continuous <p> <u>Data length</u>:  176451 / 176451  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %)<p> <u>Mean</u>:  4.093 	 <u>StdDev</u>:  2.472 <br><u>Median</u>:  4 	 <u>IQR</u>:  2 - 6 <br><u>Min</u>:  0 	 <u>Max</u>:  12 </div>
+<div class='Cell'><img class='origimg' src='fig/host_seniority_2.png' height='150' width='250'><br> <u>Outlier values</u>: <br> No outlier values found</div>
+<div class='Cell'><img class='origimg' src='fig/host_seniority_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> occupied_cat </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/occupied_cat_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  176451 / 176451  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  3 <br> <ul> <li><u> Full </u>:  60510 </li> <li><u> Low </u>:  81594 </li> <li><u> Medium </u>:  34347 </li> </ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/occupied_cat_3.png' height='150' width='150'><br></div>
+</div>
+<div class='Row'><div class='Cell'><b> accommodates.norm </b><p>  </p></div>
+<div class='Cell'><img class='origimg'  src='fig/accommodates.norm_1.png' height='150' width='150'><br></div>
+<div class='Cell'> <u>Data type</u>: Categorical Data <p> <u>Data length</u>:  176451 / 176451  ( 100 %) <br> <u>Missing</u>:  0  ( 0 %) <p> <u>Number of levels</u>:  6 <br> <ul> </div>
+<div class='Cell'></div>
+<div class='Cell'><img class='origimg' src='fig/accommodates.norm_3.png' height='150' width='150'><br></div>
+</div>
+</div>
+</div>
+                <div data-role='popup' id='myContainer' style='display: none;'>
+                <img id='popup_img' src='' />
+                </div>
+                </div>
+                </div>
+                </div>
+                <p>
+                <div class='onetoone'>
+                <form id='myform2'>
+                <span> <input type='button' id='less' value=' << '> </span>
+                <span> <input id='idx' name='idx' value='1'></input></span>
+                <span> <input type='button' id='more' value=' >> '> </span>
+                </form>
+                </div>
+                <p>
+                </body></html>
+                

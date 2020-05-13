@@ -105,18 +105,6 @@ randomForestRangerFunc<-function(train, test, err_res){
 
 xgBoostFunc<-function(train, test, err_res){
   
-
-  # Convert the Species factor to an integer class starting at 0
-  # This is picky, but it's a requirement for XGBoost
-  #species = iris$Species
-  
-  #species<-df.dataset1$occupied_cat
-  
-  #label = as.integer(df.dataset1$occupied_cat)-1
-  
-  #iris$Species = NULL
-  #df.dataset1$occupied_cat<-NULL
-  
   train.data = as.matrix(train[2:ncol(train)])
   train.label = as.integer(train$occupied_cat)-1
   
@@ -185,10 +173,6 @@ kNNFunc<-function(train, test, err_res){
   
   nor <-function(x) { (x -min(x))/(max(x)-min(x))   }
   
-  ##Run nomalization on first 4 coulumns of dataset because they are the predictors
-  #train_norm <- as.data.frame(lapply(train[,2:ncol(train)], nor))
-  
-  #test_norm <- as.data.frame(lapply(test[,2:ncol(test)], nor))
   
   summary(train_norm)
   dim(train_norm)
@@ -198,12 +182,6 @@ kNNFunc<-function(train, test, err_res){
     
   mod8 <- class:knn(train_norm, test_norm, cl=occupation_target_category, k=3)
   
-  #  str(mod8)
-  
-  #  pred8 <- as.numeric(as.character(mod8)
-  
-  #  rmse(test$cnt,pred8)
-  #  rmsle(test$cnt,pred8)
   err_res <- rbind(err_res, data.frame(Name="kNN", Model="mod8", 
                                        MultiLogLoss=MultiLogLoss(pred8, test$occupied_cat),
                                        Accuracy=accuracyFunc(pred8, test$occupied_cat)))
@@ -221,18 +199,9 @@ svmFunc<-function(train, test, err_res){
   mod9$predict.prob
   
   
-  #test(mod9)
-  
   pred9 <- predict(mod9, newdata=test[,2:ncol(test)])
   
   names(pred9)<-levels(test$occupied_cat)
-  
-  
-  
-  
-  #rmse(test$cnt,pred9)
-  #print(rmsle(test$cnt,pred9))
-  #print(my.seed)
   
   err_res <- rbind(err_res, data.frame(Name="SVM", Model="mod9",
                                        MultiLogLoss=MultiLogLoss(as.matrix(pred9), test$occupied_cat),
@@ -258,11 +227,6 @@ adabagFunc<-function(train, test, err_res){
   
   pred10 = predict(model, test[,2:ncol(test)])
   
-  #print(pred10$confusion)
-  #print(pred10$error)
-  
-  #result = data.frame(test$occupied_cat, pred$prob, pred$class)
-  #print(result)
   result<-as.data.frame(pred10$prob)
   names(result)<-levels(occupied_cat)
   
@@ -281,7 +245,6 @@ gbmFunc<-function(train, test, err_res){
   set.seed(17)
   ptm5 <- proc.time()
   
-  #fit5 <- gbm(target ~ ., data=strain, distribution="multinomial", n.trees=2000, cv.folds=2)
   mod11 <- gbm(occupied_cat ~ ., data=train, distribution="multinomial", n.trees=20000, cv.folds=2, verbose = TRUE)
   
   mod.time <- proc.time() - ptm5
